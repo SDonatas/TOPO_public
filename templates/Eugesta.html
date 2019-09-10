@@ -1,0 +1,174 @@
+{% extends "layout.html" %}
+{% block title %}Eugesta likučių skaičiuoklė{% endblock %}
+{% block fixedHeader %}
+{% endblock %}
+{% block ReportDate %}Ataskaita atnaujinta {{Maxdate}}{% endblock %}
+
+{% block style %}
+.uploadTable td {font-size: 12px; border: None;}
+#overlay {
+      position: fixed; /* Sit on top of the page content */
+      display: none; /* Hidden by default */
+      width: 100%; /* Full width (cover the whole page) */
+      height: 100%; /* Full height (cover the whole page) */
+      top: 0; 
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+      z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+      cursor: pointer; /* Add a pointer on hover */
+    }
+    #text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 18px;
+      color: white;
+      transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+      font-family: 'Roboto', sans-serif;
+    }
+
+{% endblock %}
+
+{% block content %}
+<div id="overlay">
+  <div id="text" >Ataskaita skaičiuojama...</div>
+
+</div>
+
+<div class='UploadPart table'>
+	<h6 class='thead-light'>Siųsti naują Eugestos failą</h6>
+	<table class="table">
+		
+
+		<tbody>
+
+			<tr class='pattern'>
+				<td align="center">
+
+					<table class="uploadTable" align="center"><tbody><tr><td>
+					
+								<form method=POST action='/Eugesta/EugestaUpload' enctype=multipart/form-data>
+								  <input type=file name=file>
+								  <input type=submit value=Siųsti onclick="on()">
+								</form>
+						</td>
+
+							<td align="center">
+
+					
+								<a>
+							{% with messages = get_flashed_messages() %}
+						  {% if messages %}
+						    
+						    {% for message in messages %}
+						     {{ message }}
+						    {% endfor %}
+				
+						  {% endif %}
+						{% endwith %}
+								</a>
+			
+
+
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</td>
+		</tr>
+				</tbody>
+				</table>
+	
+
+
+</div>
+
+<h6 class='thead-light'>Statistika</h6>
+<br>
+<div class='ResultPart table'>
+<br>
+
+        <table class="table">
+                <thead class="thead-light">
+                	{% if summary != None %}
+                	{% for col in summary.keys() %}
+                        <td align="center">{{col}}</td>
+                	{% endfor %}
+                	{% else %}
+                	<td></td>
+                	{% endif %}
+                	
+                </thead>
+		<tbody>
+			<tr>
+				{% if summary != None %}
+				{% for value in summary.values() %}
+				<td align="center">{{value}}</td>
+				{% endfor %}
+				{% else %}
+				<td></td>
+				{% endif %}
+			</tr>
+		</tbody>               
+
+         </table>
+
+
+ 	<br>
+	<h6 class='thead-light'>Neatitinkančių likučių sąrašas <a href="/EugestaDownload">(atsisiųsti excel)</a></h6>
+	<br>
+
+	<table class="table table-striped">
+		<thead class="thead-light">
+			{% if data != None  %}
+			{% for col in data[0].keys() %}
+			<td align="center">{{col}}</td>
+			{% endfor %}
+			{% else %}
+			<td align="center">No Data</td>
+			{% endif %}
+		</thead>
+
+		<tbody>
+			
+			
+
+			{% if data != None  %}
+			
+			{% for row in data %}
+			<tr>
+			{% for col in row.values() %}
+			
+			<td align="center">{{col}}</td>
+			{% endfor %}
+
+			</tr>
+			{% endfor %}
+
+			{% else %}
+			
+			{% endif %}
+
+				
+
+
+		</tbody>
+	</table>
+
+
+</div>
+
+
+{% endblock %}
+{% block javascript %}
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+{% endblock %}

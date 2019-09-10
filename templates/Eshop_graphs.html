@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block ReportDate %}Ataskaita atnaujinta iki: {{Maxdate}}{% endblock %}
+
+{% block title %}Pardavimų ataskaita{% endblock %}
+
+{% block fixedHeader %}
+{% endblock %}
+
+
+{% block style %}
+  .savaitgalis {background-color: lightgrey;}
+  .savaite {background-color: white;}
+  .table {align="center"; width: 1580; border: 1px solid Silver;}
+  .table td {margin: 12px 12px 12px 12px;}
+  .leftColumnHeader {width: 200px; background-color: lightgrey; text-align: right;}
+  .data {text-align: center;}
+  .leftColumnIndex {width: 200px; text-align: right; vertical-align: middle; font-weight: bold;}
+  .leftColumnIndexLight {text-align: right; vertical-align: middle;}
+  .GoogleDataStudioHeader {text-align: center; color: #616161; font-size: 18px; font-weight: bold;}
+{% endblock %}
+
+
+  <!-- HTML TABLES DIRECTLY FROM SQL -->
+{% block content %}
+<p class='GoogleDataStudioHeader'>Eshop grafikai (10 Savaičių)</p>
+<p align="center"><iframe align="center" width="1600" height="7340" align="center" src="https://datastudio.google.com/embed/reporting/1VM-gCqRPEk6Bnaj8aPhDkKFbGW3kk3Lw/page/o9gq" frameborder="0" style="border:0" allowfullscreen></iframe></p>
+{% endblock %}
+
+
+
+
+
+{% block javascript %}
+  $(document).ready(function() {
+
+   $( "a" ).each(function(){
+       var value = parseInt( $( this ).html() );
+       if ( value < 0 )
+       {
+           $( this ).parent().css('color', 'red');
+       }
+   });
+
+    $( "a" ).each(function(){
+       var value = parseInt( $( this ).html() );
+       if ( value > 0 )
+       {
+           $( this ).parent().css('color', 'green');
+       }
+   });
+
+
+});
+
+
+
+{% endblock %}

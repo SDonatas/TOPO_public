@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+{% block fixedHeader %}
+{% endblock %}
+{% block style %}
+    .ataskaitos td { text-align:center; }
+    #overlay {
+      position: fixed; /* Sit on top of the page content */
+      display: none; /* Hidden by default */
+      width: 100%; /* Full width (cover the whole page) */
+      height: 100%; /* Full height (cover the whole page) */
+      top: 0; 
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+      background-size: cover;
+      z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+      cursor: pointer; /* Add a pointer on hover */
+    }
+
+
+    #text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 18px;
+      color: white;
+      transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .table-report {font-size: 12px; font-family: 'Roboto', sans-serif; float: left; margin: 15px 15px 15px 15px;}
+
+    body {background-image: url("{{url_for('static', filename='numbers_footer.jpg')}}"); background-size: cover;)
+
+
+
+
+
+{% endblock %}
+{% block content %}
+<div id="overlay">
+  <div id="text" >Ataskaita skaičiuojama...</div>
+
+</div>
+
+<table class='table ataskaitos'>
+   <thead class="thead-light pattern">
+    <td style="font-size: 14px;">Ataskaitos</td>
+   </thead>
+   <tbody>
+    <tr>
+        <td>
+            <table width="550px" align="center" style="border-top: hidden;"><tr><td>
+
+                    <div class="table-report">
+                     <p><a href = "/Pardavimai" onclick="on()">Pardavimų ataskaita</a></p>
+                    
+                    <p><a href = "/Pardavimai" onclick="on()"><img width="100px" height="100px" src="{{url_for('static', filename='iconReport.png')}}"></a></p>
+                    </div>
+
+                    <div class="table-report">
+                     <p><a href = "/Marguard" onclick="on()">Marguard kainos</a></p>
+                    
+                    <p><a href = "/Marguard" onclick="on()"><img width="100px" height="100px" src="{{url_for('static', filename='iconReport.png')}}"></a></p>
+                    </div>
+
+                    <div class="table-report">
+                     <p><a href = "/Eshop" onclick="on()">Eshop lentelė (10 Savaičių)</a></p>
+                    
+                    <p><a href = "/Eshop" onclick="on()"><img width="100px" height="100px" src="{{url_for('static', filename='iconReport.png')}}"></a></p>
+                    </div>
+
+                    <div class="table-report">
+                     <p><a href = "/EshopGraphs" onclick="on()">Eshop grafikas</a></p>
+                    
+                    <p><a href = "/EshopGraphs" onclick="on()"><img width="100px" height="100px" src="{{url_for('static', filename='iconReport.png')}}"></a></p>
+                    </div>
+
+
+                    <div class="table-report">
+                     <p><a href = "/Eugesta" onclick="on()">Eugesta likučiai</a></p>
+                    
+                    <p><a href = "/Eugesta" onclick="on()"><img width="100px" height="100px" src="{{url_for('static', filename='iconReport.png')}}"></a></p>
+                    </div>
+
+            
+      </td></tr>
+      
+
+
+
+
+    </table>
+
+        </td>
+    </tr>
+  <!--  <tr>
+      <td>
+            <a href = "/Marguard">Marguard kainos</a>
+        </td>
+
+    </tr>
+    <tr>
+      <td>
+      </td>
+
+    </tr> -->
+
+   </tbody>
+</table>
+{% endblock %}
+{% block javascript %}
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+{% endblock %}

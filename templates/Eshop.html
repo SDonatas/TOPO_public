@@ -1,0 +1,190 @@
+{% extends "layout.html" %}
+{% block ReportDate %}Ataskaita atnaujinta iki: {{Maxdate}}{% endblock %}
+
+{% block title %}Pardavimų ataskaita{% endblock %}
+
+
+
+{% block style %}
+  .savaitgalis {background-color: lightgrey;}
+  .savaite {background-color: white;}
+  .table {align="center"; border: 1px solid Silver;}
+  .table td {margin: 12px 12px 12px 12px;}
+  .leftColumnHeader {width: 200px; background-color: lightgrey; text-align: right;}
+  .data {text-align: center;}
+  .leftColumnIndex {width: 200px; text-align: right; vertical-align: middle; font-weight: bold;}
+  .leftColumnIndexLight {text-align: right; vertical-align: middle;}
+  .GoogleDataStudioHeader {text-align: center; width: 100%; color: #616161; font-size: 18px; font-weight: bold;}
+  div.GoogleDataStudioHeader {position: fixed; top: 74; z-index: 1; background-color: white;}
+  thead {position: fixed; top: 117; z-index: 1;}
+  table.main {position: relative; z-index: 0; margin-top: 169px;}
+  @page {
+    size: a4 landscape;
+    margin: 1cm;
+    text-size: 8px;
+  }
+
+{% endblock %}
+
+
+  <!-- HTML TABLES DIRECTLY FROM SQL -->
+{% block content %}
+<div class='GoogleDataStudioHeader'>
+<p class='GoogleDataStudioHeader'>Suvestinė lentelė <a href='/EshopPdf'>(atsiųsti pdf)</a></p>
+</div>
+<table class='table main' align="center">
+   <thead class="thead-light">
+    <td class='leftColumnHeader'>Savaitė</td>
+      {% for record_week in data_savaite %}
+      <td class='savaite'> {{data_savaite[loop.index0]['Savaites xx:xx']}} </td>
+      {% if data_savaitgalis|length > loop.index0 %}
+      
+      <td class='savaitgalis'> {{data_savaitgalis[loop.index0]['Savaitgalis xx:xx']}} </td>
+
+      {% endif %}
+
+
+      {% endfor %}
+
+</thead>
+<tbody>
+
+  {% for firstcolumnName in data_savaite[0].keys() if firstcolumnName not in ['Savaite', 'Savaites xx:xx']  %}
+
+  <!-- Add spaces when needed -->
+  {% if firstcolumnName in ['Ozo g. 18', 'Akmenė'] %}
+  
+  <tr>
+  {% for x in range(0, data_savaite|length + data_savaitgalis|length) %}
+  
+  {% if loop.index0 == 0 %}
+  <td class='leftColumnIndex'></td>
+  {% else %}
+  <td></td>
+  {% endif %}
+
+  {% endfor %}
+  </tr>
+
+  {% endif %}
+
+  <!-- End of add spaces -->
+
+
+  <!-- Adding main rows with data, including first column Name index -->
+  <tr>
+
+    <td class='leftColumnIndex'>
+      {{firstcolumnName}}
+    </td>
+
+  {% for record in data_savaite %}
+  <td class='data'> {{record[firstcolumnName]}} </td>
+
+  {% if data_savaitgalis|length > loop.index0 %}
+  <td class='data'> {{data_savaitgalis[loop.index0][firstcolumnName]}} </td>
+  {% endif %}
+
+  {% endfor %}
+
+  </tr>
+    <!-- End of Adding main rows with data, including first column Name index-->
+
+
+
+
+
+  <!-- Adding comparison rows for certain left Column indexes -->
+
+  <!--  if firstcolumnName in ['Gauta užsakymų', 'Vilnius', 'Ozo g. 18', 'Ukmergės g. 240', 'Ukmergės g. 369', 'Upės g. 9', 'Žirmūnų g. 64', 'Ozo g. 25', 'Kaunas', 'Karaliaus Mindaugo pr. 49', 'Savanorių pr. 206', 'Islandijos pl. 32', 'Jonavos g. 60', 'Klaipėda', 'Kiti miestai', 'Panevėžys', 'J. Basanavičiaus g. 3', 'Klaipėdos g. 143', 'Šiauliai', 'Tilžės g. 109', 'Aido g. 8'] -->
+
+  <tr class='pattern'>
+     <td class='leftColumnIndexLight'>
+      <a>%</a>
+    </td>
+
+  {% for record in data_savaite %}
+  {% if loop.index0 > 0 %}
+
+  {% if (data_savaite[loop.index0 - 1][firstcolumnName] * 100)|round|int != 0 %}
+  <td class='data'><a> {{(((data_savaite[loop.index0][firstcolumnName] - data_savaite[loop.index0 - 1][firstcolumnName]) / data_savaite[loop.index0 - 1][firstcolumnName]) * 100)|round|int}} </a></td>
+  {% else %}
+  <td class='data'><a>0</a></td>
+  {% endif %}
+
+
+
+
+  {% if data_savaitgalis|length > loop.index0 %}
+  {% if data_savaitgalis[loop.index0 - 1][firstcolumnName] != 0 %}
+  <td class='data'><a> {{(((data_savaitgalis[loop.index0][firstcolumnName] - data_savaitgalis[loop.index0 - 1][firstcolumnName]) / data_savaitgalis[loop.index0 - 1][firstcolumnName]) * 100)|round|int}} </a></td>
+  {% else %}
+  <td class='data'><a>0</a></td>
+  {% endif %}
+  
+  {% endif %}
+
+
+
+
+  {% else %}
+  <td class='data'>-</td>
+  <td class='data'>-</td>
+  {% endif %}
+  {% endfor %}
+
+
+
+  
+
+  </tr>
+  <!--  endif  -->
+  <!-- End of Adding comparison rows for certain left Column indexes -->
+
+
+
+
+
+
+  {% endfor %}
+
+
+
+</tbody>
+
+</table>
+
+<table class='savaitgalis'>
+
+</table>
+{% endblock %}
+
+
+
+
+
+{% block javascript %}
+  $(document).ready(function() {
+
+   $( "a" ).each(function(){
+       var value = parseInt( $( this ).html() );
+       if ( value < 0 )
+       {
+           $( this ).parent().css('color', 'red');
+       }
+   });
+
+    $( "a" ).each(function(){
+       var value = parseInt( $( this ).html() );
+       if ( value > 0 )
+       {
+           $( this ).parent().css('color', 'green');
+       }
+   });
+
+
+});
+
+
+
+{% endblock %}

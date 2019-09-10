@@ -1,0 +1,72 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  {% block head %}
+  <title>{% block title %}{% endblock %} - Topo grupė</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="jquery-3.4.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <style>
+    .thead-light {font-weight: bold; text-align: center;  }
+    .table {font-size: 12px; font-family: 'Roboto', sans-serif;}
+    .pattern {background-color: #ffffff;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23cccccc' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");}
+
+    .pattern2{
+        background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAOUlEQVQoU2NkIBIwEqmOAavCBzfs/oMMUNA4BJenTCE25zDOm/cfbE1SEiNe9xKvkCJfY3UjsSYCAIYrEAum+ANnAAAAAElFTkSuQmCC) repeat;}
+    .content { font-family: 'Roboto', sans-serif; }
+  {% block fixedHeader %}
+    .LogoMain {position: fixed; font-size: 12px; font-family: 'Roboto', sans-serif; top: 0; z-index: 1; background-color: white; width: 100%;}
+    .content {font-family: 'Roboto', sans-serif; position: relative; z-index: 0; margin-top: 74px;}
+  {% endblock %}
+
+
+  {% block style %}
+
+
+  {% endblock %}
+
+
+  </style>
+
+{% endblock %}
+</head>
+
+
+<body>
+  <div class='LogoMain' >
+<!-- Logo -->
+  <table margin="10" cellpadding="10" cellspacing="10" style="font-size: 12px; font-family: 'Roboto', sans-serif; width: 100%;">
+    <tr>
+      <td style="text-align: left; width: 200px;"><a href='/'><img align="left" src="{{url_for('static', filename='logo.png')}}"></a></td>
+      <td><a>{% block ReportDate %}{% endblock %}</a></td>
+      {% block createdby %}<td style="text-align: right; width: 100px;">Created by: Donatas Švilpa (donatas.svilpa@topocentras.eu), <a href='http://sdonatas.pythonanywhere.com'>http://sdonatas.pythonanywhere.com)</a></td>{% endblock %}
+        <td style="text-align: right; width: 50px;"><img height=50px align='right' src="{{url_for('static', filename='profile_90.jpg')}}"></td>
+
+    </tr>
+  </table>
+</div>
+
+
+  
+<div class='content'>
+{% block content %}
+{% endblock %}
+</div>
+
+
+<script type="text/javascript">
+{% block javascript %}
+{% endblock %}
+</script>
+
+</body>
+
+
+
+</html>

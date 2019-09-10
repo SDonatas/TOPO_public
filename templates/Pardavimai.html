@@ -1,0 +1,978 @@
+{% extends "layout.html" %}
+{% block ReportDate %}Ataskaita atnaujinta iki: {{Maxdate}}{% endblock %}
+
+{% block title %}Pardavimų ataskaita{% endblock %}
+
+{% block fixedHeader %}
+{% endblock %}
+
+{% block style %}
+    table.TOPOLenteleTipas1 {height: 300px; text-align: center; vertical-align: middle;}
+    table.TOPOLenteleTipas1Plius50 {height: 450px; text-align: center; vertical-align: middle;}
+    .darker {background-color: WhiteSmoke; font-weight: bold;}
+    .heading { font-family: 'Oswald', sans-serif; font-size: 18px;}  
+    .table {font-family: 'Roboto', sans-serif; width: 1600px; align: "center"; border: 1px solid Silver;}
+    .thead-light {font-family: 'Roboto', sans-serif;}
+{% endblock %}
+
+
+
+  <!-- HTML TABLES DIRECTLY FROM SQL -->
+{% block content %}
+<p align = "center"><iframe width="1600" height="1800" align="center" src="https://datastudio.google.com/embed/reporting/10TMZwArZ6KySOKtrSl51gm7JZrC5OaaS/page/67Hl" frameborder="0" style="border:0" allowfullscreen></iframe></p>
+<p class="heading" align="center">Suvestinė lentelė</p>
+<p align="center" style="text-align: center;">
+<table class='table' align="center">
+   <thead class="thead-light">
+    <th class='darker'></th>
+    <th class='darker' colspan="5" scope="colgroup">Pardavimai EUR</th>
+    <th class='darker' colspan="5" scope="colgroup">Lankytojų skaičius VNT</th>
+    <th class='darker' colspan="5" scope="colgroup">Laimingumo koeficientas %</th>
+    <th class='darker' colspan="5" scope="colgroup">Vidutinis pirkinių krepšelis EUR</th>
+  </thead>
+  <thead class="thead-light">
+    <th></th>
+    <th>2017</th>
+    <th>2018</th>
+    <th>2017</th>
+    <th>Net skirtumas</th>
+    <th>% skirtumas</th>
+    <th>2017</th>
+    <th>2018</th>
+    <th>2017</th>
+    <th>Net skirtumas</th>
+    <th>% skirtumas</th>
+    <th>2017</th>
+    <th>2018</th>
+    <th>2017</th>
+    <th>Net skirtumas</th>
+    <th>% skirtumas</th>
+    <th>2017</th>
+    <th>2018</th>
+    <th>2017</th>
+    <th>Net skirtumas</th>
+    <th>% skirtumas</th>
+
+  </thead>
+
+<tbody>
+  <tr><td class='darker' colspan="21" scope="colgroup">TOP01</td></tr>
+  <tr>
+    <td class='darker'>Tiesioginiai pirkėjai</td>
+    <td>{{data['Year0_minus_2_sTotal'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_sTotal'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_sTotal'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['sTotalNetDifference'][('TOPO1', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['sTotalPercentDifference'][('TOPO1', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_PeopleIN'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_PeopleIN'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_PeopleIN'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['PeopleInNetDifference'][('TOPO1', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['PeopleInPercentDifference'][('TOPO1', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_Happyness'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_Happyness'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_Happyness'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['HappynessNetDifference'][('TOPO1', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['HappynessPercentDifference'][('TOPO1', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_Basket'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_Basket'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_Basket'][('TOPO1', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['BasketNetDifference'][('TOPO1', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['BasketPercentDifference'][('TOPO1', 'Ne ESHOP')]}}</a></td>
+  </tr>
+
+<tr>
+
+  <td class='darker'>C&C pirkėjai</td>
+  <td>{{data['Year0_minus_2_sTotal'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_sTotal'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_sTotal'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['sTotalNetDifference'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['sTotalPercentDifference'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_PeopleIN'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_PeopleIN'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_PeopleIN'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['PeopleInNetDifference'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['PeopleInPercentDifference'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_Happyness'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_Happyness'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_Happyness'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['HappynessNetDifference'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['HappynessPercentDifference'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_Basket'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_Basket'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_Basket'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['BasketNetDifference'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['BasketPercentDifference'][('TOPO1', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+
+</tr>
+
+<tr>
+  <td class='darker'>TC % / vid.</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_2_sTotalTotalPercent']['TOPO1']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_1_sTotalTotalPercent']['TOPO1']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_sTotalTotalPercent']['TOPO1']}}</td>
+  <td>-</td>
+  <td>-</td>
+
+
+  <td>{{data['AllTOPOCalculated']['Year0_minus_2_PeopleINTotalPercent']['TOPO1']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_1_PeopleINTotalPercent']['TOPO1']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_PeopleINTotalPercent']['TOPO1']}}</td>
+  <td>-</td>
+  <td>-</td>
+
+
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_2_HappynessTotalPercent']['TOPO1']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_1_HappynessTotalPercent']['TOPO1']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_HappynessTotalPercent']['TOPO1']}}</a></td>
+  <td>-</td>
+  <td>-</td>
+
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_2_BasketTotalPercent']['TOPO1']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_1_BasketTotalPercent']['TOPO1']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_BasketTotalPercent']['TOPO1']}}</a></td>
+  <td>-</td>
+  <td>-</td>
+
+</tr>
+
+
+
+<tr><td class='darker' colspan="21" scope="colgroup">TOP02</td></tr>
+  <tr>
+    <td class='darker'>Tiesioginiai pirkėjai</td>
+    <td>{{data['Year0_minus_2_sTotal'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_sTotal'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_sTotal'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['sTotalNetDifference'][('TOPO2', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['sTotalPercentDifference'][('TOPO2', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_PeopleIN'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_PeopleIN'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_PeopleIN'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['PeopleInNetDifference'][('TOPO2', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['PeopleInPercentDifference'][('TOPO2', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_Happyness'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_Happyness'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_Happyness'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['HappynessNetDifference'][('TOPO2', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['HappynessPercentDifference'][('TOPO2', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_Basket'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_Basket'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_Basket'][('TOPO2', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['BasketNetDifference'][('TOPO2', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['BasketPercentDifference'][('TOPO2', 'Ne ESHOP')]}}</a></td>
+  </tr>
+
+<tr>
+
+  <td class='darker'>C&C pirkėjai</td>
+  <td>{{data['Year0_minus_2_sTotal'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_sTotal'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_sTotal'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['sTotalNetDifference'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['sTotalPercentDifference'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_PeopleIN'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_PeopleIN'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_PeopleIN'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['PeopleInNetDifference'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['PeopleInPercentDifference'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_Happyness'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_Happyness'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_Happyness'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['HappynessNetDifference'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['HappynessPercentDifference'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_Basket'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_Basket'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_Basket'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['BasketNetDifference'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['BasketPercentDifference'][('TOPO2', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+
+</tr>
+
+<tr>
+  <td class='darker'>TC % / vid.</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_2_sTotalTotalPercent']['TOPO2']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_1_sTotalTotalPercent']['TOPO2']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_sTotalTotalPercent']['TOPO2']}}</td>
+  <td>-</td>
+  <td>-</td>
+
+
+  <td>{{data['AllTOPOCalculated']['Year0_minus_2_PeopleINTotalPercent']['TOPO2']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_1_PeopleINTotalPercent']['TOPO2']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_PeopleINTotalPercent']['TOPO2']}}</td>
+  <td>-</td>
+  <td>-</td>
+
+
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_2_HappynessTotalPercent']['TOPO2']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_1_HappynessTotalPercent']['TOPO2']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_HappynessTotalPercent']['TOPO2']}}</a></td>
+  <td>-</td>
+  <td>-</td>
+
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_2_BasketTotalPercent']['TOPO2']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_1_BasketTotalPercent']['TOPO2']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_BasketTotalPercent']['TOPO2']}}</a></td>
+  <td>-</td>
+  <td>-</td>
+
+</tr>
+
+
+
+<tr><td class='darker' colspan="21" scope="colgroup">TOP03</td></tr>
+  <tr>
+    <td class='darker'>Tiesioginiai pirkėjai</td>
+    <td>{{data['Year0_minus_2_sTotal'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_sTotal'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_sTotal'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['sTotalNetDifference'][('TOPO3', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['sTotalPercentDifference'][('TOPO3', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_PeopleIN'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_PeopleIN'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_PeopleIN'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['PeopleInNetDifference'][('TOPO3', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['PeopleInPercentDifference'][('TOPO3', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_Happyness'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_Happyness'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_Happyness'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['HappynessNetDifference'][('TOPO3', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['HappynessPercentDifference'][('TOPO3', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_Basket'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_Basket'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_Basket'][('TOPO3', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['BasketNetDifference'][('TOPO3', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['BasketPercentDifference'][('TOPO3', 'Ne ESHOP')]}}</a></td>
+  </tr>
+
+<tr>
+
+  <td class='darker'>C&C pirkėjai</td>
+  <td>{{data['Year0_minus_2_sTotal'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_sTotal'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_sTotal'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['sTotalNetDifference'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['sTotalPercentDifference'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_PeopleIN'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_PeopleIN'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_PeopleIN'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['PeopleInNetDifference'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['PeopleInPercentDifference'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_Happyness'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_Happyness'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_Happyness'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['HappynessNetDifference'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['HappynessPercentDifference'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_Basket'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_Basket'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_Basket'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['BasketNetDifference'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['BasketPercentDifference'][('TOPO3', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+
+</tr>
+
+<tr>
+  <td class='darker'>TC % / vid.</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_2_sTotalTotalPercent']['TOPO3']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_1_sTotalTotalPercent']['TOPO3']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_sTotalTotalPercent']['TOPO3']}}</td>
+  <td>-</td>
+  <td>-</td>
+
+
+  <td>{{data['AllTOPOCalculated']['Year0_minus_2_PeopleINTotalPercent']['TOPO3']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_1_PeopleINTotalPercent']['TOPO3']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_PeopleINTotalPercent']['TOPO3']}}</td>
+  <td>-</td>
+  <td>-</td>
+
+
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_2_HappynessTotalPercent']['TOPO3']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_1_HappynessTotalPercent']['TOPO3']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_HappynessTotalPercent']['TOPO3']}}</a></td>
+  <td>-</td>
+  <td>-</td>
+
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_2_BasketTotalPercent']['TOPO3']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_1_BasketTotalPercent']['TOPO3']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_BasketTotalPercent']['TOPO3']}}</a></td>
+  <td>-</td>
+  <td>-</td>
+
+</tr>
+
+
+<tr><td class='darker' colspan="21" scope="colgroup">TOP04</td></tr>
+  <tr>
+    <td class='darker'>Tiesioginiai pirkėjai</td>
+    <td>{{data['Year0_minus_2_sTotal'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_sTotal'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_sTotal'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['sTotalNetDifference'][('TOPO4', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['sTotalPercentDifference'][('TOPO4', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_PeopleIN'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_PeopleIN'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_PeopleIN'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['PeopleInNetDifference'][('TOPO4', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['PeopleInPercentDifference'][('TOPO4', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_Happyness'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_Happyness'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_Happyness'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['HappynessNetDifference'][('TOPO4', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['HappynessPercentDifference'][('TOPO4', 'Ne ESHOP')]}}</a></td>
+
+    <td>{{data['Year0_minus_2_Basket'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_minus_1_Basket'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td>{{data['Year0_Basket'][('TOPO4', 'Ne ESHOP')]}}</td>
+    <td><a>{{data['BasketNetDifference'][('TOPO4', 'Ne ESHOP')]}}</a></td>
+    <td><a>{{data['BasketPercentDifference'][('TOPO4', 'Ne ESHOP')]}}</a></td>
+  </tr>
+
+<tr>
+
+  <td class='darker'>C&C pirkėjai</td>
+  <td>{{data['Year0_minus_2_sTotal'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_sTotal'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_sTotal'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['sTotalNetDifference'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['sTotalPercentDifference'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_PeopleIN'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_PeopleIN'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_PeopleIN'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['PeopleInNetDifference'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['PeopleInPercentDifference'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_Happyness'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_Happyness'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_Happyness'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['HappynessNetDifference'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['HappynessPercentDifference'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+  <td>{{data['Year0_minus_2_Basket'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_minus_1_Basket'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td>{{data['Year0_Basket'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</td>
+  <td><a>{{data['BasketNetDifference'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+  <td><a>{{data['BasketPercentDifference'][('TOPO4', 'ESHOP (duomenys su Click & Collect)')]}}</a></td>
+
+
+</tr>
+
+<tr>
+  <td class='darker'>TC % / vid.</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_2_sTotalTotalPercent']['TOPO4']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_1_sTotalTotalPercent']['TOPO4']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_sTotalTotalPercent']['TOPO4']}}</td>
+  <td>-</td>
+  <td>-</td>
+
+
+  <td>{{data['AllTOPOCalculated']['Year0_minus_2_PeopleINTotalPercent']['TOPO4']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_minus_1_PeopleINTotalPercent']['TOPO4']}}</td>
+  <td>{{data['AllTOPOCalculated']['Year0_PeopleINTotalPercent']['TOPO4']}}</td>
+  <td>-</td>
+  <td>-</td>
+
+
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_2_HappynessTotalPercent']['TOPO4']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_1_HappynessTotalPercent']['TOPO4']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_HappynessTotalPercent']['TOPO4']}}</a></td>
+  <td>-</td>
+  <td>-</td>
+
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_2_BasketTotalPercent']['TOPO4']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_minus_1_BasketTotalPercent']['TOPO4']}}</a></td>
+  <td><a>{{data['AllTOPOCalculated']['Year0_BasketTotalPercent']['TOPO4']}}</a></td>
+  <td>-</td>
+  <td>-</td>
+
+</tr>
+
+
+<tr>
+  <td class='darker' colspan="21" scope="colgroup">Visos TOPO</td><
+</tr>
+
+<tr>
+  <td class='darker'>Tiesioginiai pirkėjai</td>
+          <td>{{data['AllTOPOInMonth']['Year0_minus_2_sTotal']['Ne ESHOP']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_minus_1_sTotal']['Ne ESHOP']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_sTotal']['Ne ESHOP']}}</td>
+          <td><a>{{data['AllTOPOInMonth']['sTotalNetDifference']['Ne ESHOP']}}</a></td>
+          <td><a>{{data['AllTOPOInMonth']['sTotalPercentDifference']['Ne ESHOP']}}</a></td>
+
+        <td>{{data['AllTOPOInMonth']['Year0_minus_2_PeopleIN']['Ne ESHOP']}}</td>
+         <td>{{data['AllTOPOInMonth']['Year0_minus_1_PeopleIN']['Ne ESHOP']}}</td>
+        <td>{{data['AllTOPOInMonth']['Year0_PeopleIN']['Ne ESHOP']}}</td>
+        <td><a>{{data['AllTOPOInMonth']['PeopleInNetDifference']['Ne ESHOP']}}</a></td>
+        <td><a>{{data['AllTOPOInMonth']['PeopleInPercentDifference']['Ne ESHOP']}}</a></td>
+
+
+        <td>{{data['AllTOPOInMonth']['Year0_minus_2_Happyness']['Ne ESHOP']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_minus_1_Happyness']['Ne ESHOP']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_Happyness']['Ne ESHOP']}}</td>
+          <td><a>{{data['AllTOPOInMonth']['HappynessNetDifference']['Ne ESHOP']}}</a></td>
+          <td><a>{{data['AllTOPOInMonth']['HappynessPercentDifference']['Ne ESHOP']}}</a></td>
+
+
+
+          <td>{{data['AllTOPOInMonth']['Year0_minus_2_Basket']['Ne ESHOP']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_minus_1_Basket']['Ne ESHOP']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_Basket']['Ne ESHOP']}}</td>
+          <td><a>{{data['AllTOPOInMonth']['BasketNetDifference']['Ne ESHOP']}}</a></td>
+          <td><a>{{data['AllTOPOInMonth']['BasketPercentDifference']['Ne ESHOP']}}</a></td>
+
+
+</tr>
+
+
+<tr>
+
+
+          <td class='darker'>C&C pirkėjai</td>
+          <td>{{data['AllTOPOInMonth']['Year0_minus_2_sTotal']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_minus_1_sTotal']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_sTotal']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td><a>{{data['AllTOPOInMonth']['sTotalNetDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+          <td><a>{{data['AllTOPOInMonth']['sTotalPercentDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+
+
+          <td>{{data['AllTOPOInMonth']['Year0_minus_2_PeopleIN']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_minus_1_PeopleIN']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_PeopleIN']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td><a>{{data['AllTOPOInMonth']['PeopleInNetDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+          <td><a>{{data['AllTOPOInMonth']['PeopleInPercentDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+
+          <td>{{data['AllTOPOInMonth']['Year0_minus_2_Happyness']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_minus_1_Happyness']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_Happyness']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td><a>{{data['AllTOPOInMonth']['HappynessNetDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+          <td><a>{{data['AllTOPOInMonth']['HappynessPercentDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+
+          <td>{{data['AllTOPOInMonth']['Year0_minus_2_Basket']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_minus_1_Basket']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['AllTOPOInMonth']['Year0_Basket']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td><a>{{data['AllTOPOInMonth']['BasketNetDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+          <td><a>{{data['AllTOPOInMonth']['BasketPercentDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+
+
+
+</tr>
+
+
+<tr>
+
+          <td class='darker'>Viso</td>
+          <td>{{data['AllTOPO']['Year0_minus_2_sTotal']}}</td>
+          <td>{{data['AllTOPO']['Year0_minus_1_sTotal']}}</td>
+          <td>{{data['AllTOPO']['Year0_sTotal']}}</td>
+          <td><a>{{data['AllTOPO']['sTotalNetDifference']}}</a></td>
+          <td><a>{{data['AllTOPO']['sTotalPercentDifference']}}</a></td>
+
+          <td>{{data['AllTOPO']['Year0_minus_2_PeopleIN']}}</td>
+          <td>{{data['AllTOPO']['Year0_minus_1_PeopleIN']}}</td>
+          <td>{{data['AllTOPO']['Year0_PeopleIN']}}</td>
+          <td><a>{{data['AllTOPO']['PeopleInNetDifference']}}</a></td>
+          <td><a>{{data['AllTOPO']['PeopleInPercentDifference']}}</a></td>
+
+
+          <td>{{data['AllTOPO']['Year0_minus_2_Happyness']}}</td>
+          <td>{{data['AllTOPO']['Year0_minus_1_Happyness']}}</td>
+          <td>{{data['AllTOPO']['Year0_Happyness']}}</td>
+          <td><a>{{data['AllTOPO']['HappynessNetDifference']}}</a></td>
+          <td><a>{{data['AllTOPO']['HappynessPercentDifference']}}</a></td>
+
+          <td>{{data['AllTOPO']['Year0_minus_2_Basket']}}</td>
+          <td>{{data['AllTOPO']['Year0_minus_1_Basket']}}</td>
+          <td>{{data['AllTOPO']['Year0_Basket']}}</td>
+          <td><a>{{data['AllTOPO']['BasketNetDifference']}}</a></td>
+          <td><a>{{data['AllTOPO']['BasketPercentDifference']}}</a></td>
+
+
+
+
+</tr>
+
+
+
+<tr>
+
+          <td class='darker'>Kaunas</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_2_sTotal']['Kaunas']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_sTotal']['Kaunas']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_sTotal']['Kaunas']}}</td>
+          <td><a>{{data['VilniusKaunas']['sTotalNetDifference']['Kaunas']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['sTotalPercentDifference']['Kaunas']}}</a></td>
+
+
+          <td>{{data['VilniusKaunas']['Year0_minus_2_PeopleIN']['Kaunas']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_PeopleIN']['Kaunas']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_PeopleIN']['Kaunas']}}</td>
+          <td><a>{{data['VilniusKaunas']['PeopleInNetDifference']['Kaunas']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['PeopleInPercentDifference']['Kaunas']}}</a></td>
+
+
+          <td>{{data['VilniusKaunas']['Year0_minus_2_Happyness']['Kaunas']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_Happyness']['Kaunas']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_Happyness']['Kaunas']}}</td>
+          <td><a>{{data['VilniusKaunas']['HappynessNetDifference']['Kaunas']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['HappynessPercentDifference']['Kaunas']}}</a></td>
+
+
+          <td>{{data['VilniusKaunas']['Year0_minus_2_Basket']['Kaunas']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_Basket']['Kaunas']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_Basket']['Kaunas']}}</td>
+          <td><a>{{data['VilniusKaunas']['BasketNetDifference']['Kaunas']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['BasketPercentDifference']['Kaunas']}}</a></td>
+
+
+
+
+
+</tr>
+
+
+<tr>
+
+          <td class='darker'>Vilnius</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_2_sTotal']['Vilnius']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_sTotal']['Vilnius']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_sTotal']['Vilnius']}}</td>
+          <td><a>{{data['VilniusKaunas']['sTotalNetDifference']['Vilnius']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['sTotalPercentDifference']['Vilnius']}}</a></td>
+
+          <td>{{data['VilniusKaunas']['Year0_minus_2_PeopleIN']['Vilnius']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_PeopleIN']['Vilnius']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_PeopleIN']['Vilnius']}}</td>
+          <td><a>{{data['VilniusKaunas']['PeopleInNetDifference']['Vilnius']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['PeopleInPercentDifference']['Vilnius']}}</a></td>
+
+
+          <td>{{data['VilniusKaunas']['Year0_minus_2_Happyness']['Vilnius']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_Happyness']['Vilnius']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_Happyness']['Vilnius']}}</td>
+          <td><a>{{data['VilniusKaunas']['HappynessNetDifference']['Vilnius']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['HappynessPercentDifference']['Vilnius']}}</a></td>
+
+
+          <td>{{data['VilniusKaunas']['Year0_minus_2_Basket']['Vilnius']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_Basket']['Vilnius']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_Basket']['Vilnius']}}</td>
+          <td><a>{{data['VilniusKaunas']['BasketNetDifference']['Vilnius']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['BasketPercentDifference']['Vilnius']}}</a></td>
+
+
+
+</tr>
+
+
+<tr>
+
+
+          <td class='darker'>Kiti miestai</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_2_sTotal']['Kiti miestai']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_sTotal']['Kiti miestai']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_sTotal']['Kiti miestai']}}</td>
+          <td><a>{{data['VilniusKaunas']['sTotalNetDifference']['Kiti miestai']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['sTotalPercentDifference']['Kiti miestai']}}</a></td>
+
+
+          <td>{{data['VilniusKaunas']['Year0_minus_2_PeopleIN']['Kiti miestai']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_PeopleIN']['Kiti miestai']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_PeopleIN']['Kiti miestai']}}</td>
+          <td><a>{{data['VilniusKaunas']['PeopleInNetDifference']['Kiti miestai']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['PeopleInPercentDifference']['Kiti miestai']}}</a></td>
+
+
+
+          <td>{{data['VilniusKaunas']['Year0_minus_2_Happyness']['Kiti miestai']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_Happyness']['Kiti miestai']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_Happyness']['Kiti miestai']}}</td>
+          <td><a>{{data['VilniusKaunas']['HappynessNetDifference']['Kiti miestai']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['HappynessPercentDifference']['Kiti miestai']}}</a></td>
+
+
+          <td>{{data['VilniusKaunas']['Year0_minus_2_Basket']['Kiti miestai']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_minus_1_Basket']['Kiti miestai']}}</td>
+          <td>{{data['VilniusKaunas']['Year0_Basket']['Kiti miestai']}}</td>
+          <td><a>{{data['VilniusKaunas']['BasketNetDifference']['Kiti miestai']}}</a></td>
+          <td><a>{{data['VilniusKaunas']['BasketPercentDifference']['Kiti miestai']}}</a></td>
+
+
+
+
+
+</tr>
+
+
+<tr>
+
+          <td class='darker'>Up to date</td>
+          <td>{{data['AllTOPOUpToDate']['Year0_minus_2_sTotal']}}</td>
+          <td>{{data['AllTOPOUpToDate']['Year0_minus_1_sTotal']}}</td>
+          <td>{{data['AllTOPOUpToDate']['Year0_sTotal']}}</td>
+          <td><a>{{data['AllTOPOUpToDate']['sTotalNetDifference']}}</a></td>
+          <td><a>{{data['AllTOPOUpToDate']['sTotalPercentDifference']}}</a></td>
+
+
+          <td>{{data['AllTOPOUpToDate']['Year0_minus_2_PeopleIN']}}</td>
+          <td>{{data['AllTOPOUpToDate']['Year0_minus_1_PeopleIN']}}</td>
+          <td>{{data['AllTOPOUpToDate']['Year0_PeopleIN']}}</td>
+          <td><a>{{data['AllTOPOUpToDate']['PeopleInNetDifference']}}</a></td>
+          <td><a>{{data['AllTOPOUpToDate']['PeopleInPercentDifference']}}</a></td>
+
+
+          <td>{{data['AllTOPOUpToDate']['Year0_minus_2_Happyness']}}</td>
+          <td>{{data['AllTOPOUpToDate']['Year0_minus_1_Happyness']}}</td>
+          <td>{{data['AllTOPOUpToDate']['Year0_Happyness']}}</td>
+          <td><a>{{data['AllTOPOUpToDate']['HappynessNetDifference']}}</a></td>
+          <td><a>{{data['AllTOPOUpToDate']['HappynessPercentDifference']}}</a></td>
+
+
+          <td>{{data['AllTOPOUpToDate']['Year0_minus_2_Basket']}}</td>
+          <td>{{data['AllTOPOUpToDate']['Year0_minus_1_Basket']}}</td>
+          <td>{{data['AllTOPOUpToDate']['Year0_Basket']}}</td>
+          <td><a>{{data['AllTOPOUpToDate']['BasketNetDifference']}}</a></td>
+          <td><a>{{data['AllTOPOUpToDate']['BasketPercentDifference']}}</a></td>
+
+
+
+</tr>
+
+
+<tr><td class='darker' colspan="21" scope="colgroup">Online</td></tr>
+<tr>
+    <td class='darker'>Tiesioginiai pirkėjai</td>
+    <td>{{data['Online']['Year0_minus_2_sTotal']['Ne ESHOP']}}</td>
+    <td>{{data['Online']['Year0_minus_1_sTotal']['Ne ESHOP']}}</td>
+    <td>{{data['Online']['Year0_sTotal']['Ne ESHOP']}}</td>
+    <td><a>{{data['Online']['sTotalNetDifference']['Ne ESHOP']}}</a></td>
+    <td><a>{{data['Online']['sTotalPercentDifference']['Ne ESHOP']}}</a></td>
+
+
+    <td>{{data['Online']['Year0_minus_2_PeopleIN']['Ne ESHOP']}}</td>
+    <td>{{data['Online']['Year0_minus_1_PeopleIN']['Ne ESHOP']}}</td>
+    <td>{{data['Online']['Year0_PeopleIN']['Ne ESHOP']}}</td>
+    <td><a>{{data['Online']['PeopleInNetDifference']['Ne ESHOP']}}</a></td>
+    <td><a>{{data['Online']['PeopleInPercentDifference']['Ne ESHOP']}}</a></td>
+
+
+
+    <td>{{data['Online']['Year0_minus_2_Happyness']['Ne ESHOP']}}</td>
+    <td>{{data['Online']['Year0_minus_1_Happyness']['Ne ESHOP']}}</td>
+    <td>{{data['Online']['Year0_Happyness']['Ne ESHOP']}}</td>
+    <td><a>{{data['Online']['HappynessNetDifference']['Ne ESHOP']}}</a></td>
+    <td><a>{{data['Online']['HappynessPercentDifference']['Ne ESHOP']}}</a></td>
+
+
+    <td>{{data['Online']['Year0_minus_2_Basket']['Ne ESHOP']}}</td>
+    <td>{{data['Online']['Year0_minus_1_Basket']['Ne ESHOP']}}</td>
+    <td>{{data['Online']['Year0_Basket']['Ne ESHOP']}}</td>
+    <td><a>{{data['Online']['BasketNetDifference']['Ne ESHOP']}}</a></td>
+    <td><a>{{data['Online']['BasketPercentDifference']['Ne ESHOP']}}</a></td>
+
+
+</tr>
+
+
+<tr>
+
+           <td class='darker'>C&C pirkėjai</td>
+          <td>{{data['Online']['Year0_minus_2_sTotal']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['Online']['Year0_minus_1_sTotal']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['Online']['Year0_sTotal']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td><a>{{data['Online']['sTotalNetDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+          <td><a>{{data['Online']['sTotalPercentDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+
+
+          <td>{{data['Online']['Year0_minus_2_PeopleIN']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['Online']['Year0_minus_1_PeopleIN']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['Online']['Year0_PeopleIN']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td><a>{{data['Online']['PeopleInNetDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+          <td><a>{{data['Online']['PeopleInPercentDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+
+
+
+          <td>{{data['Online']['Year0_minus_2_Happyness']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['Online']['Year0_minus_1_Happyness']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['Online']['Year0_Happyness']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td><a>{{data['Online']['HappynessNetDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+          <td><a>{{data['Online']['HappynessPercentDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+
+
+          <td>{{data['Online']['Year0_minus_2_Basket']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['Online']['Year0_minus_1_Basket']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td>{{data['Online']['Year0_Basket']['ESHOP (duomenys su Click & Collect)']}}</td>
+          <td><a>{{data['Online']['BasketNetDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+          <td><a>{{data['Online']['BasketPercentDifference']['ESHOP (duomenys su Click & Collect)']}}</a></td>
+
+
+
+
+</tr>
+
+
+
+<tr>
+
+
+          <td class='darker'>Up to date</td>
+          <td>{{data['OnlineUpToDate']['Year0_minus_2_sTotal']}}</td>
+          <td>{{data['OnlineUpToDate']['Year0_minus_1_sTotal']}}</td>
+          <td>{{data['OnlineUpToDate']['Year0_sTotal']}}</td>
+          <td><a>{{data['OnlineUpToDate']['sTotalNetDifference']}}</a></td>
+          <td><a>{{data['OnlineUpToDate']['sTotalPercentDifference']}}</a></td>
+
+
+
+          <td>{{data['OnlineUpToDate']['Year0_minus_2_PeopleIN']}}</td>
+          <td>{{data['OnlineUpToDate']['Year0_minus_1_PeopleIN']}}</td>
+          <td>{{data['OnlineUpToDate']['Year0_PeopleIN']}}</td>
+          <td><a>{{data['OnlineUpToDate']['PeopleInNetDifference']}}</a></td>
+          <td><a>{{data['OnlineUpToDate']['PeopleInPercentDifference']}}</a></td>
+
+          <td>{{data['OnlineUpToDate']['Year0_minus_2_Happyness']}}</td>
+          <td>{{data['OnlineUpToDate']['Year0_minus_1_Happyness']}}</td>
+          <td>{{data['OnlineUpToDate']['Year0_Happyness']}}</td>
+          <td><a>{{data['OnlineUpToDate']['HappynessNetDifference']}}</a></td>
+          <td><a>{{data['OnlineUpToDate']['HappynessPercentDifference']}}</a></td>
+
+
+          <td>{{data['OnlineUpToDate']['Year0_minus_2_Basket']}}</td>
+          <td>{{data['OnlineUpToDate']['Year0_minus_1_Basket']}}</td>
+          <td>{{data['OnlineUpToDate']['Year0_Basket']}}</td>
+          <td><a>{{data['OnlineUpToDate']['BasketNetDifference']}}</a></td>
+          <td><a>{{data['OnlineUpToDate']['BasketPercentDifference']}}</a></td>
+
+
+
+
+
+
+
+
+</tr>
+
+
+<tr><td class='darker' colspan="21" scope="colgroup">Kiti Kanalai</td></tr>
+
+
+
+<tr>
+
+  <td class='darker'>B2B</td>
+<td>{{data['B2B']['Year0_minus_2_sTotal']}}</td>
+<td>{{data['B2B']['Year0_minus_1_sTotal']}}</td>
+          <td>{{data['B2B']['Year0_sTotal']}}</td>
+          <td><a>{{data['B2B']['sTotalNetDifference']}}</a></td>
+          <td><a>{{data['B2B']['sTotalPercentDifference']}}</a></td>
+
+
+<td>{{data['B2B']['Year0_minus_2_PeopleIN']}}</td>
+          <td>{{data['B2B']['Year0_minus_1_PeopleIN']}}</td>
+          <td>{{data['B2B']['Year0_PeopleIN']}}</td>
+          <td><a>{{data['B2B']['PeopleInNetDifference']}}</a></td>
+          <td><a>{{data['B2B']['PeopleInPercentDifference']}}</a></td>
+
+ <td>{{data['B2B']['Year0_minus_2_Happyness']}}</td>
+          <td>{{data['B2B']['Year0_minus_1_Happyness']}}</td>
+          <td>{{data['B2B']['Year0_Happyness']}}</td>
+          <td><a>{{data['B2B']['HappynessNetDifference']}}</a></td>
+          <td><a>{{data['B2B']['HappynessPercentDifference']}}</a></td>
+
+ <td>{{data['B2B']['Year0_minus_2_Basket']}}</td>
+          <td>{{data['B2B']['Year0_minus_1_Basket']}}</td>
+          <td>{{data['B2B']['Year0_Basket']}}</td>
+          <td><a>{{data['B2B']['BasketNetDifference']}}</a></td>
+          <td><a>{{data['B2B']['BasketPercentDifference']}}</a></td>
+
+
+
+
+
+
+</tr>
+
+
+<tr>
+
+    <td class='darker'>Up to date</td>
+          <td>{{data['KitiKanalaiUpToDate']['Year0_minus_2_sTotal']}}</td>
+          <td>{{data['KitiKanalaiUpToDate']['Year0_minus_1_sTotal']}}</td>
+          <td>{{data['KitiKanalaiUpToDate']['Year0_sTotal']}}</td>
+          <td><a>{{data['KitiKanalaiUpToDate']['sTotalNetDifference']}}</a></td>
+          <td><a>{{data['KitiKanalaiUpToDate']['sTotalPercentDifference']}}</a></td>
+
+
+ <td>{{data['KitiKanalaiUpToDate']['Year0_minus_2_PeopleIN']}}</td>
+          <td>{{data['KitiKanalaiUpToDate']['Year0_minus_1_PeopleIN']}}</td>
+          <td>{{data['KitiKanalaiUpToDate']['Year0_PeopleIN']}}</td>
+          <td><a>{{data['KitiKanalaiUpToDate']['PeopleInNetDifference']}}</a></td>
+          <td><a>{{data['KitiKanalaiUpToDate']['PeopleInPercentDifference']}}</a></td>
+
+ <td>{{data['KitiKanalaiUpToDate']['Year0_minus_2_Happyness']}}</td>
+          <td>{{data['KitiKanalaiUpToDate']['Year0_minus_1_Happyness']}}</td>
+          <td>{{data['KitiKanalaiUpToDate']['Year0_Happyness']}}</td>
+          <td><a>{{data['KitiKanalaiUpToDate']['HappynessNetDifference']}}</a></td>
+          <td><a>{{data['KitiKanalaiUpToDate']['HappynessPercentDifference']}}</a></td>
+
+ <td>{{data['KitiKanalaiUpToDate']['Year0_minus_2_Basket']}}</td>
+          <td>{{data['KitiKanalaiUpToDate']['Year0_minus_1_Basket']}}</td>
+          <td>{{data['KitiKanalaiUpToDate']['Year0_Basket']}}</td>
+          <td><a>{{data['KitiKanalaiUpToDate']['BasketNetDifference']}}</a></td>
+          <td><a>{{data['KitiKanalaiUpToDate']['BasketPercentDifference']}}</a></td>
+
+
+
+
+
+
+
+</tr>
+
+
+<tr><td class='darker' colspan="21" scope="colgroup">TOPO Grupe</td></tr>
+
+
+<tr>
+
+  <td class='darker'>This month</td>
+          <td>{{data['TOPOGrupe']['Year0_minus_2_sTotal']}}</td>
+          <td>{{data['TOPOGrupe']['Year0_minus_1_sTotal']}}</td>
+          <td>{{data['TOPOGrupe']['Year0_sTotal']}}</td>
+          <td><a>{{data['TOPOGrupe']['sTotalNetDifference']}}</a></td>
+          <td><a>{{data['TOPOGrupe']['sTotalPercentDifference']}}</a></td>
+
+
+
+<td>{{data['TOPOGrupe']['Year0_minus_2_PeopleIN']}}</td>
+          <td>{{data['TOPOGrupe']['Year0_minus_1_PeopleIN']}}</td>
+          <td>{{data['TOPOGrupe']['Year0_PeopleIN']}}</td>
+          <td><a>{{data['TOPOGrupe']['PeopleInNetDifference']}}</a></td>
+          <td><a>{{data['TOPOGrupe']['PeopleInPercentDifference']}}</a></td>
+
+
+<td>{{data['TOPOGrupe']['Year0_minus_2_Happyness']}}</td>
+          <td>{{data['TOPOGrupe']['Year0_minus_1_Happyness']}}</td>
+          <td>{{data['TOPOGrupe']['Year0_Happyness']}}</td>
+          <td><a>{{data['TOPOGrupe']['HappynessNetDifference']}}</a></td>
+          <td><a>{{data['TOPOGrupe']['HappynessPercentDifference']}}</a></td>
+
+
+ <td>{{data['TOPOGrupe']['Year0_minus_2_Basket']}}</td>
+          <td>{{data['TOPOGrupe']['Year0_minus_1_Basket']}}</td>
+          <td>{{data['TOPOGrupe']['Year0_Basket']}}</td>
+          <td><a>{{data['TOPOGrupe']['BasketNetDifference']}}</a></td>
+          <td><a>{{data['TOPOGrupe']['BasketPercentDifference']}}</a></td>
+
+
+
+
+
+</tr>
+
+
+
+<tr>
+
+<td class='darker'>Up to date</td>
+          <td>{{data['TOPOGrupeUpToDate']['Year0_minus_2_sTotal']}}</td>
+          <td>{{data['TOPOGrupeUpToDate']['Year0_minus_1_sTotal']}}</td>
+          <td>{{data['TOPOGrupeUpToDate']['Year0_sTotal']}}</td>
+          <td><a>{{data['TOPOGrupeUpToDate']['sTotalNetDifference']}}</a></td>
+          <td><a>{{data['TOPOGrupeUpToDate']['sTotalPercentDifference']}}</a></td>
+
+
+
+
+<td>{{data['TOPOGrupeUpToDate']['Year0_minus_2_PeopleIN']}}</td>
+          <td>{{data['TOPOGrupeUpToDate']['Year0_minus_1_PeopleIN']}}</td>
+          <td>{{data['TOPOGrupeUpToDate']['Year0_PeopleIN']}}</td>
+          <td><a>{{data['TOPOGrupeUpToDate']['PeopleInNetDifference']}}</a></td>
+          <td><a>{{data['TOPOGrupeUpToDate']['PeopleInPercentDifference']}}</a></td>
+
+
+
+
+<td>{{data['TOPOGrupeUpToDate']['Year0_minus_2_Happyness']}}</td>
+          <td>{{data['TOPOGrupeUpToDate']['Year0_minus_1_Happyness']}}</td>
+          <td>{{data['TOPOGrupeUpToDate']['Year0_Happyness']}}</td>
+          <td><a>{{data['TOPOGrupeUpToDate']['HappynessNetDifference']}}</a></td>
+          <td><a>{{data['TOPOGrupeUpToDate']['HappynessPercentDifference']}}</a></td>
+
+
+<td>{{data['TOPOGrupeUpToDate']['Year0_minus_2_Basket']}}</td>
+          <td>{{data['TOPOGrupeUpToDate']['Year0_minus_1_Basket']}}</td>
+          <td>{{data['TOPOGrupeUpToDate']['Year0_Basket']}}</td>
+          <td><a>{{data['TOPOGrupeUpToDate']['BasketNetDifference']}}</a></td>
+          <td><a>{{data['TOPOGrupeUpToDate']['BasketPercentDifference']}}</a></td>
+
+
+</tr>
+
+
+
+</tbody>
+
+</table>
+
+</p>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block javascript %}
+  $(document).ready(function() {
+
+   $( "a" ).each(function(){
+       var value = parseInt( $( this ).html() );
+       if ( value < 0 )
+       {
+           $( this ).parent().css('color', 'red');
+       }
+   });
+
+    $( "a" ).each(function(){
+       var value = parseInt( $( this ).html() );
+       if ( value > 0 )
+       {
+           $( this ).parent().css('color', 'green');
+       }
+   });
+
+
+});
+{% endblock %}
